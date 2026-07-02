@@ -4,6 +4,7 @@ import { ToolPageContent } from "@/components/pages/ToolPageContent";
 import { getAffiliateOfferForTool } from "@/lib/affiliates";
 import { getCategory } from "@/lib/categories";
 import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { buildEnhancedToolFaq } from "@/lib/tool-content";
 import { getAllTools, getRelatedTools, getToolByCategoryAndSlug } from "@/lib/tools";
 
 interface ToolPageProps {
@@ -121,7 +122,14 @@ export default function ToolPage({ params }: ToolPageProps) {
   const relatedTools = getRelatedTools(tool);
   const affiliateOffer = getAffiliateOfferForTool(tool);
   const categoryTitle = category?.title ?? "Utility Tool";
-  const jsonLd = buildJsonLd(tool.title, tool.description, categoryTitle, tool.category, tool.slug, tool.faq);
+  const jsonLd = buildJsonLd(
+    tool.title,
+    tool.description,
+    categoryTitle,
+    tool.category,
+    tool.slug,
+    buildEnhancedToolFaq(tool),
+  );
 
   return (
     <>

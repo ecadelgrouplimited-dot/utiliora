@@ -1,6 +1,5 @@
 ﻿"use client";
 
-import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCard } from "@/components/AffiliateCard";
 import { ToolCard } from "@/components/ToolCard";
 import { useLocale } from "@/components/LocaleProvider";
@@ -27,8 +26,6 @@ export function CategoryPageContent({ category, tools, categoryAffiliateOffer }:
       </section>
 
       {categoryAffiliateOffer ? <AffiliateCard offer={categoryAffiliateOffer} /> : null}
-
-      <AdSlot label={t("ad.sponsored_placement", undefined, "Sponsored placement")} />
 
       <section className="tool-grid">
         {tools.map((tool) => (

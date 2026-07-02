@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { AdSlot } from "@/components/AdSlot";
 import { AffiliateCard } from "@/components/AffiliateCard";
 import { RelatedTools } from "@/components/RelatedTools";
 import { SocialSharePrompt } from "@/components/SocialSharePrompt";
@@ -9,6 +8,7 @@ import { ToolRenderer } from "@/components/ToolRenderer";
 import { useLocale } from "@/components/LocaleProvider";
 import { trackEvent } from "@/lib/analytics";
 import { getToolPrimaryNextStep, getWorkflowBundlesForTool, isHeroTool } from "@/lib/growth";
+import { buildEnhancedToolFaq, buildToolGuidance } from "@/lib/tool-content";
 import type { AffiliateOffer, ToolDefinition } from "@/lib/types";
 
 interface ToolPageContentProps {
@@ -29,6 +29,8 @@ export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOf
   const heroTool = isHeroTool(tool);
   const nextStepTool = getToolPrimaryNextStep(tool);
   const workflowBundles = getWorkflowBundlesForTool(tool);
+  const guidance = buildToolGuidance(tool);
+  const faq = buildEnhancedToolFaq(tool);
 
   useEffect(() => {
     trackEvent("tool_page_view", {
@@ -63,10 +65,9 @@ export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOf
       {affiliateOffer ? <AffiliateCard offer={affiliateOffer} /> : null}
       <SocialSharePrompt toolTitle={tool.title} toolSlug={tool.slug} toolPath={`/${tool.category}/${tool.slug}`} />
 
-      <AdSlot />
-
       <section className="content-block">
         <h2>{t("tool.how_help_title", undefined, "How this tool helps")}</h2>
+        <p>{guidance.audience}</p>
         <p>{tool.description}</p>
         <p>
           {t(
@@ -94,8 +95,37 @@ export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOf
           </>
         ) : null}
         <p className="supporting-text">
-          Utiliora keeps core tool access friction-light and favors browser-side processing where possible so users can
-          reach value quickly.
+          {guidance.privacy}
+        </p>
+      </section>
+
+      <section className="content-block">
+        <h2>What you can accomplish</h2>
+        <ul className="tool-note-list">
+          {guidance.outcomes.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="content-block">
+        <h2>Recommended workflow</h2>
+        <ol className="tool-steps">
+          {guidance.steps.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="content-block">
+        <h2>Quality and trust checks</h2>
+        <ul className="tool-note-list">
+          {guidance.checks.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <p className="supporting-text">
+          {guidance.limits.join(" ")}
         </p>
       </section>
 
@@ -155,7 +185,7 @@ export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOf
 
       <section className="faq" aria-label="Frequently asked questions">
         <h2>{t("tool.faq_title", undefined, "FAQ")}</h2>
-        {tool.faq.map((item) => (
+        {faq.map((item) => (
           <details key={item.question}>
             <summary>{item.question}</summary>
             <p>{item.answer}</p>

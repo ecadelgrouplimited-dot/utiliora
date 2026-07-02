@@ -705,8 +705,7 @@ textarea {
 .related-tools,
 .category-card,
 .tool-card,
-.affiliate-card,
-.ad-slot {
+.affiliate-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -720,8 +719,7 @@ textarea {
 .content-block,
 .faq,
 .related-tools,
-.affiliate-card,
-.ad-slot {
+.affiliate-card {
   padding: 1.2rem;
 }
 
@@ -1985,24 +1983,11 @@ textarea {
   cursor: pointer;
 }
 
-.ad-slot p,
 .affiliate-card h2,
 .related-tools h2,
 .faq h2,
 .content-block h2 {
   margin-top: 0;
-}
-
-.ad-slot {
-  display: grid;
-  gap: 0.6rem;
-  align-items: center;
-  min-height: 120px;
-}
-
-.ad-slot .adsbygoogle {
-  width: 100%;
-  min-height: 90px;
 }
 
 .affiliate-card {
@@ -2065,6 +2050,20 @@ textarea {
 .faq summary {
   cursor: pointer;
   font-weight: 600;
+}
+
+.tool-note-list,
+.tool-steps {
+  margin: 0.8rem 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.tool-note-list li,
+.tool-steps li {
+  color: var(--text-soft);
+  line-height: 1.6;
 }
 
 .related-tools ul {
@@ -2423,8 +2422,7 @@ textarea {
   .content-block,
   .faq,
   .related-tools,
-  .affiliate-card,
-  .ad-slot {
+  .affiliate-card {
     padding: 0.92rem;
     border-radius: 14px;
   }
