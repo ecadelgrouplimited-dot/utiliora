@@ -140,14 +140,6 @@ export const metadata: Metadata = {
     description: "Simple tools. Instant results.",
     url: SITE_ORIGIN,
     siteName: SITE_NAME,
-    images: [
-      {
-        url: "/icons/icon-512.png",
-        width: 512,
-        height: 512,
-        alt: "Utiliora logo",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",

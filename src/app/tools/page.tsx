@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ToolsDirectoryContent } from "@/components/pages/ToolsDirectoryContent";
-import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, absoluteUrl, ogImages } from "@/lib/site";
 import { getAllTools } from "@/lib/tools";
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     canonical: "/tools",
   },
   openGraph: {
+    images: ogImages(),
     title: `All Tools | ${SITE_NAME}`,
     description:
       "Browse the full Utiliora tool library across calculators, converters, SEO, image, and developer tools.",
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
+    images: ogImages(),
     card: "summary_large_image",
     title: `All Tools | ${SITE_NAME}`,
     description:

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ToolPageContent } from "@/components/pages/ToolPageContent";
 import { getAffiliateOfferForTool } from "@/lib/affiliates";
 import { getCategory } from "@/lib/categories";
-import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { absoluteUrl, ogImages, SITE_NAME } from "@/lib/site";
 import { buildEnhancedToolFaq } from "@/lib/tool-content";
 import { getAllTools, getRelatedTools, getToolByCategoryAndSlug } from "@/lib/tools";
 
@@ -36,11 +36,13 @@ export function generateMetadata({ params }: ToolPageProps): Metadata {
       description: tool.description,
       url: absoluteUrl(`/${tool.category}/${tool.slug}`),
       type: "article",
+      images: ogImages(`/${tool.category}/${tool.slug}/opengraph-image`),
     },
     twitter: {
       card: "summary_large_image",
       title: `${tool.title} | ${SITE_NAME}`,
       description: tool.description,
+      images: ogImages(`/${tool.category}/${tool.slug}/opengraph-image`),
     },
     robots: {
       index: true,

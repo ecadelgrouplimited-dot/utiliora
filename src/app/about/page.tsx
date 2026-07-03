@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AboutPageContent } from "@/components/pages/AboutPageContent";
-import { absoluteUrl, SITE_NAME, SITE_ORIGIN } from "@/lib/site";
+import { SITE_NAME, SITE_ORIGIN, absoluteUrl, ogImages } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Utiliora",
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: "/about",
   },
   openGraph: {
+    images: ogImages(),
     title: `About ${SITE_NAME}`,
     description:
       "Learn about Utiliora, our mission, privacy-first principles, and how we build fast utility tools for everyone.",

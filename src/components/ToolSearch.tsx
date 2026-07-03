@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale } from "@/components/LocaleProvider";
 import type { ToolDefinition } from "@/lib/types";
 
@@ -11,6 +11,11 @@ interface ToolSearchProps {
 export function ToolSearch({ tools }: ToolSearchProps) {
   const { t } = useLocale();
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const initial = new URLSearchParams(window.location.search).get("q");
+    if (initial) setQuery(initial);
+  }, []);
 
   const results = useMemo(() => {
     const normalized = query.trim().toLowerCase();

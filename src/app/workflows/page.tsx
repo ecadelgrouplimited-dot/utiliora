@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { WorkflowBundleCard } from "@/components/WorkflowBundleCard";
-import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, absoluteUrl, ogImages } from "@/lib/site";
 import { getWorkflowBundles } from "@/lib/growth";
 
 export const metadata: Metadata = {
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "/workflows",
   },
   openGraph: {
+    images: ogImages(),
     title: `Workflows | ${SITE_NAME}`,
     description:
       "Browse guided workflows for website launches, creator assets, freelancer ops, money clarity, and job applications.",

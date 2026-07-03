@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContactPageContent } from "@/components/pages/ContactPageContent";
-import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, absoluteUrl, ogImages } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Utiliora",
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: "/contact",
   },
   openGraph: {
+    images: ogImages(),
     title: `Contact ${SITE_NAME}`,
     description:
       "Contact Utiliora through email or social channels. Reach us for support, product feedback, and partnership conversations.",

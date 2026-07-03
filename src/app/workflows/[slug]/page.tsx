@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ToolCard } from "@/components/ToolCard";
-import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, absoluteUrl, ogImages } from "@/lib/site";
 import { getWorkflowBundleBySlug, getWorkflowBundles } from "@/lib/growth";
 
 interface WorkflowBundlePageProps {
@@ -25,12 +25,14 @@ export function generateMetadata({ params }: WorkflowBundlePageProps): Metadata 
       canonical: `/workflows/${bundle.slug}`,
     },
     openGraph: {
+      images: ogImages(),
       title: `${bundle.title} | ${SITE_NAME}`,
       description: bundle.summary,
       url: absoluteUrl(`/workflows/${bundle.slug}`),
       type: "article",
     },
     twitter: {
+      images: ogImages(),
       card: "summary_large_image",
       title: `${bundle.title} | ${SITE_NAME}`,
       description: bundle.summary,

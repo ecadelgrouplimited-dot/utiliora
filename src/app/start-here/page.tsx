@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ToolCard } from "@/components/ToolCard";
 import { WorkflowBundleCard } from "@/components/WorkflowBundleCard";
-import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, absoluteUrl, ogImages } from "@/lib/site";
 import { getHeroTools, getWorkflowBundles } from "@/lib/growth";
 
 export const metadata: Metadata = {
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "/start-here",
   },
   openGraph: {
+    images: ogImages(),
     title: `Start Here | ${SITE_NAME}`,
     description:
       "Start with Utiliora's recommended tools and guided workflows instead of guessing where to begin.",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
+    images: ogImages(),
     card: "summary_large_image",
     title: `Start Here | ${SITE_NAME}`,
     description:
