@@ -22,6 +22,7 @@ const unitMap: Record<Exclude<UnitQuantity, "temperature">, UnitDefinition[]> = 
     { value: "gram", label: "Grams", factor: 0.001 },
     { value: "pound", label: "Pounds", factor: 0.45359237 },
     { value: "ounce", label: "Ounces", factor: 0.028349523125 },
+    { value: "stone", label: "Stone", factor: 6.35029318 },
   ],
   area: [
     { value: "sqm", label: "Square meters", factor: 1 },
@@ -37,6 +38,8 @@ const unitMap: Record<Exclude<UnitQuantity, "temperature">, UnitDefinition[]> = 
     { value: "cubic-meter", label: "Cubic meters", factor: 1000 },
     { value: "cup-us", label: "US Cups", factor: 0.2365882365 },
     { value: "fluid-ounce-us", label: "US Fluid Ounces", factor: 0.0295735295625 },
+    { value: "tablespoon-us", label: "US Tablespoons", factor: 0.01478676478125 },
+    { value: "teaspoon-us", label: "US Teaspoons", factor: 0.00492892159375 },
   ],
   speed: [
     { value: "mps", label: "Meters/second", factor: 1 },

@@ -39,6 +39,9 @@ const UNIT_PAIRS: UnitPairDefinition[] = [
   pair({ slug: "ounces-to-grams", quantity: "weight", fromUnit: "ounce", toUnit: "gram", fromName: "ounces", toName: "grams", fromAbbr: "oz", toAbbr: "g", keywords: ["oz to g", "ounce to gram"], tableValues: SMALL }),
   pair({ slug: "ounces-to-pounds", quantity: "weight", fromUnit: "ounce", toUnit: "pound", fromName: "ounces", toName: "pounds", fromAbbr: "oz", toAbbr: "lb", keywords: ["oz to lb", "ounce to pound"], tableValues: SMALL }),
   pair({ slug: "pounds-to-ounces", quantity: "weight", fromUnit: "pound", toUnit: "ounce", fromName: "pounds", toName: "ounces", fromAbbr: "lb", toAbbr: "oz", keywords: ["lb to oz", "pound to ounce"], tableValues: SMALL }),
+  pair({ slug: "stone-to-kg", quantity: "weight", fromUnit: "stone", toUnit: "kilogram", fromName: "stone", toName: "kilograms", fromAbbr: "st", toAbbr: "kg", keywords: ["stone to kilograms", "st to kg", "body weight stone to kg"], tableValues: SMALL }),
+  pair({ slug: "kg-to-stone", quantity: "weight", fromUnit: "kilogram", toUnit: "stone", fromName: "kilograms", toName: "stone", fromAbbr: "kg", toAbbr: "st", keywords: ["kilograms to stone", "kg to st", "body weight kg to stone"] }),
+  pair({ slug: "stone-to-pounds", quantity: "weight", fromUnit: "stone", toUnit: "pound", fromName: "stone", toName: "pounds", fromAbbr: "st", toAbbr: "lb", keywords: ["stone to lbs", "st to lb"], tableValues: SMALL }),
 
   // Length
   pair({ slug: "cm-to-inches", quantity: "length", fromUnit: "centimeter", toUnit: "inch", fromName: "centimeters", toName: "inches", fromAbbr: "cm", toAbbr: "in", keywords: ["centimeters to inches", "cm to in"] }),
@@ -51,6 +54,10 @@ const UNIT_PAIRS: UnitPairDefinition[] = [
   pair({ slug: "miles-to-km", quantity: "length", fromUnit: "mile", toUnit: "kilometer", fromName: "miles", toName: "kilometers", fromAbbr: "mi", toAbbr: "km", keywords: ["miles to kilometers", "mi to km"] }),
   pair({ slug: "meters-to-yards", quantity: "length", fromUnit: "meter", toUnit: "yard", fromName: "meters", toName: "yards", fromAbbr: "m", toAbbr: "yd", keywords: ["m to yd", "metres to yards"] }),
   pair({ slug: "yards-to-meters", quantity: "length", fromUnit: "yard", toUnit: "meter", fromName: "yards", toName: "meters", fromAbbr: "yd", toAbbr: "m", keywords: ["yd to m", "yards to metres"] }),
+  pair({ slug: "feet-to-cm", quantity: "length", fromUnit: "foot", toUnit: "centimeter", fromName: "feet", toName: "centimeters", fromAbbr: "ft", toAbbr: "cm", keywords: ["feet to centimeters", "height feet to cm"], tableValues: SMALL }),
+  pair({ slug: "cm-to-feet", quantity: "length", fromUnit: "centimeter", toUnit: "foot", fromName: "centimeters", toName: "feet", fromAbbr: "cm", toAbbr: "ft", keywords: ["centimeters to feet", "height cm to feet"] }),
+  pair({ slug: "feet-to-inches", quantity: "length", fromUnit: "foot", toUnit: "inch", fromName: "feet", toName: "inches", fromAbbr: "ft", toAbbr: "in", keywords: ["ft to in", "foot to inches"], tableValues: SMALL }),
+  pair({ slug: "inches-to-feet", quantity: "length", fromUnit: "inch", toUnit: "foot", fromName: "inches", toName: "feet", fromAbbr: "in", toAbbr: "ft", keywords: ["in to ft", "inch to feet"] }),
 
   // Temperature
   pair({ slug: "celsius-to-fahrenheit", quantity: "temperature", fromUnit: "c", toUnit: "f", fromName: "Celsius", toName: "Fahrenheit", fromAbbr: "°C", toAbbr: "°F", keywords: ["c to f", "centigrade to fahrenheit", "degrees celsius to fahrenheit"], tableValues: TEMPS }),
@@ -63,11 +70,28 @@ const UNIT_PAIRS: UnitPairDefinition[] = [
   pair({ slug: "oz-to-ml", quantity: "volume", fromUnit: "fluid-ounce-us", toUnit: "milliliter", fromName: "US fluid ounces", toName: "milliliters", fromAbbr: "fl oz", toAbbr: "mL", keywords: ["ounces to milliliters", "fluid ounces to ml"], tableValues: SMALL }),
   pair({ slug: "cups-to-ml", quantity: "volume", fromUnit: "cup-us", toUnit: "milliliter", fromName: "US cups", toName: "milliliters", fromAbbr: "cup", toAbbr: "mL", keywords: ["cups to milliliters", "cup to ml"], tableValues: SMALL }),
   pair({ slug: "ml-to-cups", quantity: "volume", fromUnit: "milliliter", toUnit: "cup-us", fromName: "milliliters", toName: "US cups", fromAbbr: "mL", toAbbr: "cup", keywords: ["milliliters to cups", "ml to cup"], tableValues: SMALL }),
+  pair({ slug: "teaspoons-to-ml", quantity: "volume", fromUnit: "teaspoon-us", toUnit: "milliliter", fromName: "US teaspoons", toName: "milliliters", fromAbbr: "tsp", toAbbr: "mL", keywords: ["tsp to ml", "teaspoon to milliliters"], tableValues: SMALL }),
+  pair({ slug: "tablespoons-to-ml", quantity: "volume", fromUnit: "tablespoon-us", toUnit: "milliliter", fromName: "US tablespoons", toName: "milliliters", fromAbbr: "tbsp", toAbbr: "mL", keywords: ["tbsp to ml", "tablespoon to milliliters"], tableValues: SMALL }),
+  pair({ slug: "tablespoons-to-teaspoons", quantity: "volume", fromUnit: "tablespoon-us", toUnit: "teaspoon-us", fromName: "US tablespoons", toName: "US teaspoons", fromAbbr: "tbsp", toAbbr: "tsp", keywords: ["tbsp to tsp", "tablespoon to teaspoon"], tableValues: SMALL }),
+  pair({ slug: "cups-to-oz", quantity: "volume", fromUnit: "cup-us", toUnit: "fluid-ounce-us", fromName: "US cups", toName: "US fluid ounces", fromAbbr: "cup", toAbbr: "fl oz", keywords: ["cups to ounces", "cup to fl oz"], tableValues: SMALL }),
+  pair({ slug: "oz-to-cups", quantity: "volume", fromUnit: "fluid-ounce-us", toUnit: "cup-us", fromName: "US fluid ounces", toName: "US cups", fromAbbr: "fl oz", toAbbr: "cup", keywords: ["ounces to cups", "fl oz to cup"], tableValues: SMALL }),
+  pair({ slug: "liters-to-ml", quantity: "volume", fromUnit: "liter", toUnit: "milliliter", fromName: "liters", toName: "milliliters", fromAbbr: "L", toAbbr: "mL", keywords: ["litres to ml", "l to ml"], tableValues: SMALL }),
+  pair({ slug: "ml-to-liters", quantity: "volume", fromUnit: "milliliter", toUnit: "liter", fromName: "milliliters", toName: "liters", fromAbbr: "mL", toAbbr: "L", keywords: ["ml to litres", "ml to l"], tableValues: BIG }),
 
   // Speed
   pair({ slug: "kph-to-mph", quantity: "speed", fromUnit: "kph", toUnit: "mph", fromName: "kilometers per hour", toName: "miles per hour", fromAbbr: "km/h", toAbbr: "mph", keywords: ["kmh to mph", "kph to mph"] }),
   pair({ slug: "mph-to-kph", quantity: "speed", fromUnit: "mph", toUnit: "kph", fromName: "miles per hour", toName: "kilometers per hour", fromAbbr: "mph", toAbbr: "km/h", keywords: ["mph to kmh", "mph to km/h"] }),
   pair({ slug: "knots-to-mph", quantity: "speed", fromUnit: "knot", toUnit: "mph", fromName: "knots", toName: "miles per hour", fromAbbr: "kn", toAbbr: "mph", keywords: ["knot to mph", "nautical speed to mph"] }),
+  pair({ slug: "mph-to-knots", quantity: "speed", fromUnit: "mph", toUnit: "knot", fromName: "miles per hour", toName: "knots", fromAbbr: "mph", toAbbr: "kn", keywords: ["mph to knot", "mph to nautical"] }),
+
+  // Temperature (Kelvin)
+  pair({ slug: "celsius-to-kelvin", quantity: "temperature", fromUnit: "c", toUnit: "k", fromName: "Celsius", toName: "Kelvin", fromAbbr: "°C", toAbbr: "K", keywords: ["c to k", "degrees celsius to kelvin"], tableValues: TEMPS }),
+  pair({ slug: "kelvin-to-celsius", quantity: "temperature", fromUnit: "k", toUnit: "c", fromName: "Kelvin", toName: "Celsius", fromAbbr: "K", toAbbr: "°C", keywords: ["k to c", "kelvin to degrees celsius"], tableValues: [0, 100, 173, 200, 233, 253, 263, 273, 283, 293, 298, 303, 310, 313, 323, 333, 353, 373, 473, 573] }),
+
+  // Time
+  pair({ slug: "hours-to-minutes", quantity: "time", fromUnit: "hour", toUnit: "minute", fromName: "hours", toName: "minutes", fromAbbr: "hr", toAbbr: "min", keywords: ["hr to min", "hours in minutes"], tableValues: SMALL }),
+  pair({ slug: "minutes-to-hours", quantity: "time", fromUnit: "minute", toUnit: "hour", fromName: "minutes", toName: "hours", fromAbbr: "min", toAbbr: "hr", keywords: ["min to hr", "minutes in hours"], tableValues: BIG }),
+  pair({ slug: "days-to-hours", quantity: "time", fromUnit: "day", toUnit: "hour", fromName: "days", toName: "hours", fromAbbr: "d", toAbbr: "hr", keywords: ["days in hours", "day to hr"], tableValues: SMALL }),
 
   // Area
   pair({ slug: "sqft-to-sqm", quantity: "area", fromUnit: "sqft", toUnit: "sqm", fromName: "square feet", toName: "square meters", fromAbbr: "sq ft", toAbbr: "m²", keywords: ["square feet to square meters", "ft2 to m2"] }),
@@ -139,6 +163,12 @@ export function buildPairFormulaText(pairDef: UnitPairDefinition): string {
     }
     if (pairDef.fromUnit === "f" && pairDef.toUnit === "c") {
       return "°C = (°F − 32) × 5/9. Subtract 32 from the Fahrenheit temperature, then multiply by 5 and divide by 9.";
+    }
+    if (pairDef.fromUnit === "c" && pairDef.toUnit === "k") {
+      return "K = °C + 273.15. Add 273.15 to the Celsius temperature to get Kelvin.";
+    }
+    if (pairDef.fromUnit === "k" && pairDef.toUnit === "c") {
+      return "°C = K − 273.15. Subtract 273.15 from the Kelvin temperature to get Celsius.";
     }
   }
   const rate = getUnitRate(pairDef);
