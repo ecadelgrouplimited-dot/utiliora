@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/LocaleProvider";
+import { HOSTINGER_AFFILIATE_URL } from "@/lib/affiliates";
 
 export function SiteFooter() {
   const { t } = useLocale();
@@ -35,6 +36,25 @@ export function SiteFooter() {
             YouTube
           </a>
         </div>
+
+        <nav className="footer-links" aria-label="Partner links">
+          <strong className="footer-column-title">
+            {t("footer.partners_title", undefined, "Tools we use")}
+          </strong>
+          <a href={HOSTINGER_AFFILIATE_URL} target="_blank" rel="noopener noreferrer nofollow sponsored">
+            {t("footer.partner_hostinger", undefined, "Hostinger — hosting we run on")}
+          </a>
+          <a href="https://github.com/ecadelgrouplimited-dot/utiliora" target="_blank" rel="noreferrer">
+            {t("footer.open_source", undefined, "Open source on GitHub")}
+          </a>
+          <small className="footer-disclosure">
+            {t(
+              "footer.affiliate_disclosure",
+              undefined,
+              "Some links are affiliate links: they cost you nothing and help keep Utiliora free.",
+            )}
+          </small>
+        </nav>
       </div>
     </footer>
   );

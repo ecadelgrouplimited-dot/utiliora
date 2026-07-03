@@ -18,9 +18,17 @@ export function AffiliateCard({ offer }: AffiliateCardProps) {
       <p className="affiliate-kicker">{ariaLabel}</p>
       <h2>{headline}</h2>
       <p>{offer.description}</p>
+      {offer.benefits?.length ? (
+        <ul className="tool-note-list">
+          {offer.benefits.map((benefit) => (
+            <li key={benefit}>{benefit}</li>
+          ))}
+        </ul>
+      ) : null}
       <a href={offer.url} target="_blank" rel="noopener noreferrer nofollow sponsored">
         {ctaLabel}
       </a>
+      {offer.supportNote ? <p className="supporting-text">{offer.supportNote}</p> : null}
     </aside>
   );
 }

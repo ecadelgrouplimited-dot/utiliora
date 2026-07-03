@@ -570,9 +570,21 @@ textarea {
 .footer-inner {
   padding: 0.95rem 0 1.05rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr);
   align-items: start;
   gap: 0.9rem 1.2rem;
+}
+
+.footer-column-title {
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.footer-disclosure {
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  max-width: 26ch;
 }
 
 .footer-links {

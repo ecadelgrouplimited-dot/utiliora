@@ -28,6 +28,10 @@ export interface AffiliateOffer {
   description: string;
   ctaLabel?: string;
   url: string;
+  /** Benefit bullet points rendered inside the promo card */
+  benefits?: string[];
+  /** One-line note under the CTA, e.g. what using the link supports */
+  supportNote?: string;
 }
 
 export type CalculatorId =
