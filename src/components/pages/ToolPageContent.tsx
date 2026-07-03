@@ -8,7 +8,8 @@ import { ToolRenderer } from "@/components/ToolRenderer";
 import { useLocale } from "@/components/LocaleProvider";
 import { trackEvent } from "@/lib/analytics";
 import { getToolPrimaryNextStep, getWorkflowBundlesForTool, isHeroTool } from "@/lib/growth";
-import { buildEnhancedToolFaq, buildToolGuidance } from "@/lib/tool-content";
+import { buildToolFaqWithArticle, type ToolArticle } from "@/lib/tool-articles";
+import { buildToolGuidance } from "@/lib/tool-content";
 import type { AffiliateOffer, ToolDefinition } from "@/lib/types";
 
 interface ToolPageContentProps {
@@ -16,9 +17,10 @@ interface ToolPageContentProps {
   categoryTitle: string;
   relatedTools: ToolDefinition[];
   affiliateOffer: AffiliateOffer | null;
+  article?: ToolArticle | null;
 }
 
-export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOffer }: ToolPageContentProps) {
+export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOffer, article }: ToolPageContentProps) {
   const { t } = useLocale();
   const translatedCategoryTitle = t(`category.${tool.category}.title`, undefined, categoryTitle);
   const translatedCategoryShort = t(
@@ -30,7 +32,7 @@ export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOf
   const nextStepTool = getToolPrimaryNextStep(tool);
   const workflowBundles = getWorkflowBundlesForTool(tool);
   const guidance = buildToolGuidance(tool);
-  const faq = buildEnhancedToolFaq(tool);
+  const faq = buildToolFaqWithArticle(tool, article ?? null);
 
   useEffect(() => {
     trackEvent("tool_page_view", {
@@ -64,6 +66,37 @@ export function ToolPageContent({ tool, categoryTitle, relatedTools, affiliateOf
       <ToolRenderer tool={tool} />
       {affiliateOffer ? <AffiliateCard offer={affiliateOffer} /> : null}
       <SocialSharePrompt toolTitle={tool.title} toolSlug={tool.slug} toolPath={`/${tool.category}/${tool.slug}`} />
+
+      {article ? (
+        <section className="content-block">
+          <h2>About this tool</h2>
+          {article.intro.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
+        </section>
+      ) : null}
+
+      {article ? (
+        <section className="content-block">
+          <h2>What people use it for</h2>
+          <ul className="tool-note-list">
+            {article.useCases.map((item) => (
+              <li key={item.slice(0, 40)}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {article ? (
+        <section className="content-block">
+          <h2>Tips for better results</h2>
+          <ul className="tool-note-list">
+            {article.tips.map((item) => (
+              <li key={item.slice(0, 40)}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="content-block">
         <h2>{t("tool.how_help_title", undefined, "How this tool helps")}</h2>

@@ -4,7 +4,7 @@ import { ToolPageContent } from "@/components/pages/ToolPageContent";
 import { getAffiliateOfferForTool } from "@/lib/affiliates";
 import { getCategory } from "@/lib/categories";
 import { absoluteUrl, ogImages, SITE_NAME } from "@/lib/site";
-import { buildEnhancedToolFaq } from "@/lib/tool-content";
+import { buildToolFaqWithArticle, getToolArticle } from "@/lib/tool-articles";
 import { getAllTools, getRelatedTools, getToolByCategoryAndSlug } from "@/lib/tools";
 import { UnitPairPageContent } from "@/components/pages/UnitPairPageContent";
 import {
@@ -185,6 +185,7 @@ export default function ToolPage({ params }: ToolPageProps) {
   const category = getCategory(tool.category);
   const relatedTools = getRelatedTools(tool);
   const affiliateOffer = getAffiliateOfferForTool(tool);
+  const article = getToolArticle(tool);
   const categoryTitle = category?.title ?? "Utility Tool";
   const jsonLd = buildJsonLd(
     tool.title,
@@ -192,7 +193,7 @@ export default function ToolPage({ params }: ToolPageProps) {
     categoryTitle,
     tool.category,
     tool.slug,
-    buildEnhancedToolFaq(tool),
+    buildToolFaqWithArticle(tool, article),
   );
 
   return (
@@ -202,6 +203,7 @@ export default function ToolPage({ params }: ToolPageProps) {
         categoryTitle={categoryTitle}
         relatedTools={relatedTools}
         affiliateOffer={affiliateOffer}
+        article={article}
       />
       <script
         type="application/ld+json"
