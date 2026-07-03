@@ -13,6 +13,9 @@ const unitMap: Record<Exclude<UnitQuantity, "temperature">, UnitDefinition[]> = 
     { value: "mile", label: "Miles", factor: 1609.344 },
     { value: "foot", label: "Feet", factor: 0.3048 },
     { value: "inch", label: "Inches", factor: 0.0254 },
+    { value: "centimeter", label: "Centimeters", factor: 0.01 },
+    { value: "millimeter", label: "Millimeters", factor: 0.001 },
+    { value: "yard", label: "Yards", factor: 0.9144 },
   ],
   weight: [
     { value: "kilogram", label: "Kilograms", factor: 1 },
@@ -33,6 +36,7 @@ const unitMap: Record<Exclude<UnitQuantity, "temperature">, UnitDefinition[]> = 
     { value: "gallon-us", label: "US Gallons", factor: 3.785411784 },
     { value: "cubic-meter", label: "Cubic meters", factor: 1000 },
     { value: "cup-us", label: "US Cups", factor: 0.2365882365 },
+    { value: "fluid-ounce-us", label: "US Fluid Ounces", factor: 0.0295735295625 },
   ],
   speed: [
     { value: "mps", label: "Meters/second", factor: 1 },

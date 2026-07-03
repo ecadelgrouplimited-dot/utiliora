@@ -3,6 +3,7 @@ import { orderedCategorySlugs } from "@/lib/categories";
 import { getWorkflowBundles } from "@/lib/growth";
 import { absoluteUrl } from "@/lib/site";
 import { getAllTools } from "@/lib/tools";
+import { getAllUnitPairs } from "@/lib/unit-pairs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -79,5 +80,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...corePages, ...workflowPages, ...toolPages];
+  const unitPairPages: MetadataRoute.Sitemap = getAllUnitPairs().map((pairDef) => ({
+    url: absoluteUrl(`/converters/${pairDef.slug}`),
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.65,
+  }));
+
+  return [...corePages, ...workflowPages, ...toolPages, ...unitPairPages];
 }

@@ -5,6 +5,7 @@ import { getAffiliateOfferForCategory } from "@/lib/affiliates";
 import { getCategory, orderedCategorySlugs } from "@/lib/categories";
 import { absoluteUrl, SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import { getToolsByCategory } from "@/lib/tools";
+import { getAllUnitPairs } from "@/lib/unit-pairs";
 
 interface CategoryPageProps {
   params: {
@@ -55,6 +56,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   const tools = getToolsByCategory(category.slug);
   const categoryAffiliateOffer = getAffiliateOfferForCategory(category.slug);
+  const unitPairs = category.slug === "converters" ? getAllUnitPairs() : undefined;
   const categorySchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -97,7 +99,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <>
-      <CategoryPageContent category={category} tools={tools} categoryAffiliateOffer={categoryAffiliateOffer} />
+      <CategoryPageContent
+        category={category}
+        tools={tools}
+        categoryAffiliateOffer={categoryAffiliateOffer}
+        unitPairs={unitPairs}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify([categorySchema, breadcrumbSchema]) }}

@@ -6,6 +6,14 @@ import { getCategory } from "@/lib/categories";
 import { absoluteUrl, ogImages, SITE_NAME } from "@/lib/site";
 import { buildEnhancedToolFaq } from "@/lib/tool-content";
 import { getAllTools, getRelatedTools, getToolByCategoryAndSlug } from "@/lib/tools";
+import { UnitPairPageContent } from "@/components/pages/UnitPairPageContent";
+import {
+  buildPairDescription,
+  buildPairFaq,
+  buildPairTitle,
+  getAllUnitPairs,
+  getUnitPairBySlug,
+} from "@/lib/unit-pairs";
 
 interface ToolPageProps {
   params: {
@@ -15,15 +23,52 @@ interface ToolPageProps {
 }
 
 export function generateStaticParams() {
-  return getAllTools().map((tool) => ({
-    category: tool.category,
-    tool: tool.slug,
-  }));
+  return [
+    ...getAllTools().map((tool) => ({
+      category: tool.category,
+      tool: tool.slug,
+    })),
+    ...getAllUnitPairs().map((pairDef) => ({
+      category: "converters",
+      tool: pairDef.slug,
+    })),
+  ];
+}
+
+function getUnitPairForParams(params: ToolPageProps["params"]) {
+  if (params.category !== "converters") return null;
+  return getUnitPairBySlug(params.tool);
 }
 
 export function generateMetadata({ params }: ToolPageProps): Metadata {
   const tool = getToolByCategoryAndSlug(params.category, params.tool);
-  if (!tool) return {};
+  if (!tool) {
+    const pairDef = getUnitPairForParams(params);
+    if (!pairDef) return {};
+    const title = buildPairTitle(pairDef);
+    const description = buildPairDescription(pairDef);
+    const path = `/converters/${pairDef.slug}`;
+    return {
+      title,
+      description,
+      keywords: [...pairDef.keywords, `${pairDef.fromAbbr} to ${pairDef.toAbbr}`, "unit converter", "utiliora"],
+      alternates: { canonical: path },
+      openGraph: {
+        title,
+        description,
+        url: absoluteUrl(path),
+        type: "article",
+        images: ogImages(`${path}/opengraph-image`),
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${title} | ${SITE_NAME}`,
+        description,
+        images: ogImages(`${path}/opengraph-image`),
+      },
+      robots: { index: true, follow: true },
+    };
+  }
   return {
     title: tool.title,
     description: tool.description,
@@ -118,7 +163,24 @@ function buildJsonLd(
 
 export default function ToolPage({ params }: ToolPageProps) {
   const tool = getToolByCategoryAndSlug(params.category, params.tool);
-  if (!tool) notFound();
+  if (!tool) {
+    const pairDef = getUnitPairForParams(params);
+    if (!pairDef) notFound();
+    const jsonLd = buildJsonLd(
+      buildPairTitle(pairDef),
+      buildPairDescription(pairDef),
+      "Converters",
+      "converters",
+      pairDef.slug,
+      buildPairFaq(pairDef),
+    );
+    return (
+      <>
+        <UnitPairPageContent pairDef={pairDef} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      </>
+    );
+  }
 
   const category = getCategory(tool.category);
   const relatedTools = getRelatedTools(tool);
