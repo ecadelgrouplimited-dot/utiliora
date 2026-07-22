@@ -767,6 +767,40 @@ const ARTICLES: Record<string, ToolArticle> = {
       },
     ],
   },
+  "productivity-tools/document-compare-redline": {
+    intro: [
+      "This document redline software compares two texts or files and highlights every addition, removal, and modification at the block level — the same job legal and business teams pay for in dedicated redlining tools, run free in your browser.",
+      "Beyond a generic diff, it specifically flags changes to payment terms, deadlines, cancellation clauses, and obligations — the categories of edit most likely to matter in a contract, so a reviewer's eye goes straight to what changed in substance, not just in wording.",
+    ],
+    useCases: [
+      "Review a contract's redlined return from a counterparty and confirm exactly what changed before signing.",
+      "Compare two drafts of a policy, SOW, or proposal to produce a clean change summary for stakeholders.",
+      "Catch a slipped clause change — a shifted deadline or altered cancellation term — that a plain read-through can miss.",
+      "Audit versioned documents (terms of service, employee handbooks, pricing sheets) between releases.",
+    ],
+    tips: [
+      "Paste or import the earlier version as the first document and the newer version as the second so additions and removals are labeled correctly.",
+      "Scan the flagged payment, deadline, cancellation, and obligation changes first — they carry the most real-world risk per edit.",
+      "For long contracts, compare section by section; block-level diffing is easiest to review in focused chunks rather than one giant document.",
+    ],
+    faq: [
+      {
+        question: "What is document redline software used for?",
+        answer:
+          "Redline software compares two versions of a document and highlights what changed — additions, deletions, and edits — so a reviewer does not have to manually reread the whole document to find differences. It is standard practice for contracts, policies, and any document that goes through multiple negotiated drafts.",
+      },
+      {
+        question: "Can this tool compare PDF and Word documents, not just plain text?",
+        answer:
+          "Yes — import files directly or paste text, and the comparison runs at the block level so restructured paragraphs are still matched sensibly rather than showing as one giant unreadable diff.",
+      },
+      {
+        question: "Is my contract data uploaded anywhere when I compare documents?",
+        answer:
+          "No — comparison runs in your browser, so contract text and file contents are not sent to a server. That matters for confidential agreements, which is exactly the kind of document this tool is built to handle.",
+      },
+    ],
+  },
 };
 
 export function getToolArticle(tool: ToolDefinition): ToolArticle | null {

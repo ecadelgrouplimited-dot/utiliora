@@ -1464,11 +1464,13 @@ const productivityTools: ToolDefinition[] = [
   {
     slug: "document-compare-redline",
     category: "productivity-tools",
-    title: "Document Compare & Redline",
-    summary: "Compare two texts or files, highlight additions/removals/modifications, and flag risky clause changes.",
+    title: "Document Redline Software (Compare & Track Changes)",
+    summary: "Free document redline software: compare two texts or files, highlight additions/removals/modifications, and flag risky clause changes.",
     description:
-      "Import two documents or paste text, run block-level comparison, review human-readable change summaries, and surface payment, deadline, cancellation, and obligation changes before final approval.",
+      "Free document redline software. Import two documents or paste text, run block-level comparison, review human-readable change summaries, and surface payment, deadline, cancellation, and obligation changes before final approval.",
     keywords: [
+      "document redline software",
+      "redline software",
       "document compare tool",
       "contract redline viewer",
       "text diff summary",
